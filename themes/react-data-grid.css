@@ -122,8 +122,8 @@
   border: 2px red solid !important;
   border-radius: 2px !important;
 }
-.react-grid-Cell input.editor-main,
-select.editor-main {
+.react-grid-Cell input.editor-main-input,
+select.editor-main-input {
   display: block;
   width: 100%;
   height: 34px;
@@ -141,38 +141,38 @@ select.editor-main {
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
-.react-grid-Cell input.editor-main:focus,
-select.editor-main:focus {
+.react-grid-Cell input.editor-main-input:focus,
+select.editor-main-input:focus {
   border-color: #66afe9;
   outline: 0;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
-.react-grid-Cell input.editor-main::-moz-placeholder,
-select.editor-main::-moz-placeholder {
+.react-grid-Cell input.editor-main-input::-moz-placeholder,
+select.editor-main-input::-moz-placeholder {
   color: #999999;
   opacity: 1;
 }
-.react-grid-Cell input.editor-main:-ms-input-placeholder,
-select.editor-main:-ms-input-placeholder {
+.react-grid-Cell input.editor-main-input:-ms-input-placeholder,
+select.editor-main-input:-ms-input-placeholder {
   color: #999999;
 }
-.react-grid-Cell input.editor-main::-webkit-input-placeholder,
-select.editor-main::-webkit-input-placeholder {
+.react-grid-Cell input.editor-main-input::-webkit-input-placeholder,
+select.editor-main-input::-webkit-input-placeholder {
   color: #999999;
 }
-.react-grid-Cell input.editor-main[disabled],
-select.editor-main[disabled],
-.react-grid-Cell input.editor-main[readonly],
-select.editor-main[readonly],
-fieldset[disabled] .react-grid-Cell input.editor-main,
-fieldset[disabled] select.editor-main {
+.react-grid-Cell input.editor-main-input[disabled],
+select.editor-main-input[disabled],
+.react-grid-Cell input.editor-main-input[readonly],
+select.editor-main-input[readonly],
+fieldset[disabled] .react-grid-Cell input.editor-main-input,
+fieldset[disabled] select.editor-main-input {
   cursor: not-allowed;
   background-color: #eeeeee;
   opacity: 1;
 }
-textarea.react-grid-Cell input.editor-main,
-textareaselect.editor-main {
+textarea.react-grid-Cell input.editor-main-input,
+textareaselect.editor-main-input {
   height: auto;
 }
 

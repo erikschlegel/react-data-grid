@@ -36,7 +36,7 @@ const EditorContainer = React.createClass({
     if (inputNode !== undefined) {
       this.setTextInputFocus();
       if (!this.getEditor().disableContainerStyles) {
-        inputNode.className += ' editor-main';
+        inputNode.className += ' editor-main-input';
         inputNode.style.height = this.props.height - 1 + 'px';
       }
     }

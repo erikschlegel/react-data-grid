@@ -65,7 +65,10 @@ gulp.task('minify-examples', ['copy-dist']);
 
 // task
 gulp.task('styles', function () {
-	return gulp.src('./themes/react-data-grid.css')
+	return gulp.src([
+		'./themes/react-data-grid.css',
+		'./themes/react-select.css'
+	])
 		.pipe(gulp.dest('./examples/build'));
 });
 

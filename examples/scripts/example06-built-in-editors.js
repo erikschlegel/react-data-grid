@@ -4,7 +4,7 @@ var ReactPlayground       = require('../assets/js/ReactPlayground');
 var EditableExample = `
 
 //options for priorities autocomplete editor
-var priorities = [{id:0, title : 'Critical'}, {id:1, title : 'High'}, {id:2, title : 'Medium'}, {id:3, title : 'Low'}]
+var priorities = [{value: 'Critical', label: 'Critical'}, {value: 'High', label: 'High'}, {value: 'Medium', label: 'Medium'}, {value: 'Low', label: 'Low'}]
 var AutoCompleteEditor = ReactDataGridPlugins.Editors.AutoComplete;
 var PrioritiesEditor = <AutoCompleteEditor options={priorities}/>
 

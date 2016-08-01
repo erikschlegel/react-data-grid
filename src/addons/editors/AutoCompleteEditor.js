@@ -1,11 +1,11 @@
 const React                   = require('react');
 const ReactDOM                = require('react-dom');
-const ReactAutocomplete       = require('ron-react-autocomplete');
+const Select                  = require('react-select');
 const ExcelColumn             = require('../../PropTypeShapes/ExcelColumn');
 
 let optionPropType = React.PropTypes.shape({
-  id: React.PropTypes.required,
-  title: React.PropTypes.string
+  value: React.PropTypes.required,
+  label: React.PropTypes.string
 });
 
 const AutoCompleteEditor = React.createClass({
@@ -18,32 +18,32 @@ const AutoCompleteEditor = React.createClass({
     height: React.PropTypes.number,
     valueParams: React.PropTypes.arrayOf(React.PropTypes.string),
     column: React.PropTypes.shape(ExcelColumn),
-    resultIdentifier: React.PropTypes.string,
     search: React.PropTypes.string,
     onKeyDown: React.PropTypes.func,
     onFocus: React.PropTypes.func
   },
 
-  getDefaultProps(): {resultIdentifier: string} {
-    return {
-      resultIdentifier: 'id'
-    };
-  },
-
   handleChange() {
+    debugger;
     this.props.onCommit();
   },
 
   getValue(): any {
-    let value;
+    debugger;
+    let value = '';
     let updated = {};
     if (this.hasResults() && this.isFocusedOnSuggestion()) {
-      value = this.getLabel(this.refs.autoComplete.state.focusedValue);
-      if (this.props.valueParams) {
-        value = this.constuctValueFromParams(this.refs.autoComplete.state.focusedValue, this.props.valueParams);
+      let focusedOption = this.refs.autoComplete.state.focusedOption;
+      if (focusedOption) {
+        value = this.getLabel(focusedOption);
+        if (this.props.valueParams) {
+          value = this.constuctValueFromParams(this.refs.autoComplete.state.focusedOption, this.props.valueParams);
+        }
       }
     } else {
-      value = this.refs.autoComplete.state.searchTerm;
+      if (this.refs.autoComplete.searchTerm) {
+        value = this.refs.autoComplete.state.searchTerm;
+      }
     }
 
     updated[this.props.column.key] = value;
@@ -55,7 +55,7 @@ const AutoCompleteEditor = React.createClass({
   },
 
   getLabel(item: any): string {
-    let label = this.props.label != null ? this.props.label : 'title';
+    let label = this.props.label != null ? this.props.label : 'label';
     if (typeof label === 'function') {
       return label(item);
     } else if (typeof label === 'string') {
@@ -64,15 +64,15 @@ const AutoCompleteEditor = React.createClass({
   },
 
   hasResults(): boolean {
-    return this.refs.autoComplete.state.results.length > 0;
+    return this.refs.autoComplete.filterOptions().length > 0;
   },
 
   isFocusedOnSuggestion(): boolean {
-    let autoComplete = this.refs.autoComplete;
-    return autoComplete.state.focusedValue != null;
+    return this.refs.autoComplete.state.isFocused;
   },
 
   constuctValueFromParams(obj: any, props: ?Array<string>): string {
+    debugger;
     if (!props) {
       return '';
     }
@@ -85,10 +85,7 @@ const AutoCompleteEditor = React.createClass({
   },
 
   render(): ?ReactElement {
-    let label = this.props.label != null ? this.props.label : 'title';
-    return (<div height={this.props.height} onKeyDown={this.props.onKeyDown}>
-      <ReactAutocomplete search={this.props.search} ref="autoComplete" label={label} onChange={this.handleChange} onFocus={this.props.onFocus} resultIdentifier={this.props.resultIdentifier} options={this.props.options} value={{title: this.props.value}} />
-      </div>);
+    return <Select ref={'autoComplete'} options={this.props.options} placeholder={''} clearable={false} />;
   }
 });
 
